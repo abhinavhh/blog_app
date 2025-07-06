@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(helmet());
 app.disable('x-powered-by');
 
-// Request Throtting
+// Request Throtting ( limit each ip to 100 requests per 15 minute)
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -34,3 +34,7 @@ const limiter = rateLimit({
     legacyHeaders: false,
 });
 app.use(limiter);
+
+// response optimization
+
+app.use(compression());
