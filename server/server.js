@@ -38,3 +38,20 @@ app.use(limiter);
 // response optimization
 
 app.use(compression());
+
+// cors config
+
+const isProd = process.env.NODE_ENV === 'production';
+app.use(cors({
+    origin: isProd ?
+        'https://front-end-url'
+        :'http://localhost:5173',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type','Authorization'],
+}));
+app.options('*', cors());
+
+// trust proxy
+
+if (isProd) app.set('trust-proxy', 1);
