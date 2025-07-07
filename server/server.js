@@ -1,25 +1,30 @@
-require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-
-// Databse Connection
+const userSchema = require('./models/user');
 
 const connectDB = require('./config/database');
 const app = express();
+
 connectDB();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const PORT = 4000;
 
-app.use(cors({
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true,
-    allowedHeaders: ['Content-Type','application/json'],
-}))
-
-const port = 4000;
-app.listen(port, () => {
-    console.log('server running on port 4000');
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+app.post('/api/message', async (req, res) => {
+    try {
+        const data = new userSchema(req.body);
+        console.log(data);
+        await data.save();
+        res.status(201).json({message: 'Data saved.', data: data});
+    }catch (err) {
+        res.status(500).json({message: 'Error saving data', error: err.message});
+    }
+});
+app.get('/api/data', (req, res) => {
+    res.json({message: 'Message from backend'});
+})
+app.listen(PORT, () => {
+    console.log('Listening on 4000');
 });

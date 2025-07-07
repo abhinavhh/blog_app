@@ -1,9 +1,9 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-function connectDB() {
+const connectDB = async() => {
     try{
-        mongoose.connect(process.env.MONGODB_URI, {
+        await mongoose.connect(process.env.MONGODB_URI, {
             maxPoolSize: 10,
             serverSelectionTimeoutMS: 5000,
             socketTimeoutMS: 45000,
@@ -30,6 +30,22 @@ function connectDB() {
             console.log('Mongoose disconnected from Mongodb');
         });
 
+        function getDbConnectionStatus() {
+            const state = mongoose.connection.readyState;
+            const stateName = mongoose.STATES[state];
+            console.log(`Connection state : ${stateName}`);
+            
+            return {
+                state: state,
+                stateName: stateName,
+                isConnected: state === 1
+            };
+        }
+        getDbConnectionStatus();
+
+        setTimeout(() => {
+            getDbConnectionStatus();
+        }, 5000)
 
     }
     catch(error){
