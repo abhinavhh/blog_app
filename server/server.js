@@ -12,7 +12,7 @@ const PORT = 4000;
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
-app.post('/api/message', async (req, res) => {
+app.post('/api/user/register', async (req, res) => {
     try {
         const data = new userSchema(req.body);
         console.log(data);
