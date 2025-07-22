@@ -45,6 +45,8 @@ const Register = () => {
                 alert('User Registration Successfull');
                 setFormData({
                     username: '',
+                    password: '',
+                    email: '',
                 })
                 navigate('./Login.tsx');
             }

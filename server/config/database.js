@@ -1,56 +1,21 @@
+// import .env essentials
 require('dotenv').config();
-const mongoose = require('mongoose');
 
-const connectDB = async() => {
+//import mongoose
+import { connect } from 'mongoose';
+
+// connect to MongoDB
+const connectDB = async () => {
     try{
-        await mongoose.connect(process.env.MONGODB_URI, {
-            maxPoolSize: 10,
-            serverSelectionTimeoutMS: 5000,
-            socketTimeoutMS: 45000,
-            bufferCommands: false,
-            retryWrites: true,
-            retryReads: true,
-            heartbeatFrequencyMS: 10000,
-            minPoolSize: 1,
-            maxIdleTimeMS: 30000,
-            connectTimeoutMS: 10000,
-            family: 4,
-        });
-        console.log('Mongodb conneted');
-
-        mongoose.connection.on('conneted', () => {
-            console.log('Mongoose connected to mongoDb');
-        });
-
-        mongoose.connection.on('error', (err) => {
-            console.error('Mongoose connection error', err);
-        });
-
-        mongoose.connection.on('disconnected', () => {
-            console.log('Mongoose disconnected from Mongodb');
-        });
-
-        function getDbConnectionStatus() {
-            const state = mongoose.connection.readyState;
-            const stateName = mongoose.STATES[state];
-            console.log(`Connection state : ${stateName}`);
-            
-            return {
-                state: state,
-                stateName: stateName,
-                isConnected: state === 1
-            };
-        }
-        getDbConnectionStatus();
-
-        setTimeout(() => {
-            getDbConnectionStatus();
-        }, 5000)
-
+        await connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        console.log('MongoDB connected');
     }
-    catch(error){
-        console.log('Error connecting to MongoDb: ', error);
+    catch (err) {
+        console.error('MongoDB connection error:', err.message);
+        process.exit(1);
     }
 }
-
 module.exports = connectDB;
