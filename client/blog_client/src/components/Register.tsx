@@ -33,7 +33,7 @@ const Register = () => {
             return
         }
         try{
-            const response = await fetch('api/user/register', {
+            const response = await fetch('api/register', {
                 method: "POST",
                 headers:{
                     'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ const Register = () => {
                         <input 
                             type="email" 
                             name="email" 
-                            id="name" 
+                            id="email" 
                             value={formData.email} 
                             required
                             onChange={handleChange}

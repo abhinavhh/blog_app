@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
         match: /.+\@.+\..+/,
-        Lowercase: true
+        lowercase: true
     },
     password: {
         type: String,
@@ -28,14 +28,14 @@ const userSchema = new mongoose.Schema({
         trim: true,
     },
     role: {
-        trpe: String,
+        type: String,
         enum: ['User', 'Admin'],
         default: 'User'
     }
 }, { timestamps: true });
 
 // --Security : -- Store password in hashed format
-userSchema.pre('save', async function() {
+userSchema.pre('save', async function(next) {
     // hash password if it has been modified or is new
     if(!this.isModified('password')) {
         return next();
