@@ -1,14 +1,23 @@
-const express = require('express');
-const userSchema = require('./models/user');
+//Establish env
+import dotenv from 'dotenv';
+dotenv.config();
 
-const connectDB = require('./config/database');
+//import express
+import express from 'express';
+
+//import db connection
+import connectDB from './config/database.js';
+
+//create a express app
 const app = express();
 
+//connect to database
 connectDB();
 
-app.use(express.json());
-const PORT = 4000;
+// define a port for running server
+const PORT = process.env.PORT || 3000;
 
+// define the port to listen
 app.listen(PORT, () => {
-    console.log('Listening on 4000');
-});
+    console.log(`Server is running on port ${PORT}`);
+})

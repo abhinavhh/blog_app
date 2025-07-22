@@ -1,5 +1,6 @@
 // import .env essentials
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 //import mongoose
 import { connect } from 'mongoose';
@@ -18,4 +19,4 @@ const connectDB = async () => {
         process.exit(1);
     }
 }
-module.exports = connectDB;
+export default connectDB;
