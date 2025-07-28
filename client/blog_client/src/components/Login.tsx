@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<{ username: string; password: string }>({
     username: '',
     password: '',
@@ -30,6 +30,9 @@ const Login = () => {
       })
       if(response.ok) {
         alert('Login Successfull');
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        navigate('/home');
       }
     }catch (err) {
       alert(`Error in Login : ${err}`);

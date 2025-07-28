@@ -9,7 +9,7 @@ import cors from 'cors';
 
 //import db connection
 import connectDB from './config/database.js';
-
+import authRouter from './routes/authorize.js';
 //create a express app
 const app = express();
 app.use(cors());
@@ -19,6 +19,7 @@ connectDB();
 
 app.use('/api', login);
 
+app.use('/api', authRouter);
 // define a port for running server
 const PORT = process.env.PORT || 5000;
 
