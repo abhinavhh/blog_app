@@ -2,7 +2,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import testUser from './routes/testUser.js';
+import login from './routes/login.js';
 //import express
 import express from 'express';
 import cors from 'cors';
@@ -17,10 +17,10 @@ app.use(express.json());
 //connect to database
 connectDB();
 
-app.use('/api', testUser);
+app.use('/api', login);
 
 // define a port for running server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // define the port to listen
 app.listen(PORT, () => {

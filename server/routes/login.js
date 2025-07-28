@@ -1,6 +1,8 @@
 import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 const router = express.Router();
-
+import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 
 router.post('/login', async (req, res) => {
@@ -18,7 +20,8 @@ router.post('/login', async (req, res) => {
             console.error('Invalid credentials for user:', username);
         }
         console.log('User logged in successfully:', username);
-        res.status(200).json({ message: 'Login successful', user: { username: user.username, role: user.role } });
+        const token = jwt.sign({username: user.username, role: user.role}, {expriesIn: '1h'});
+        res.status(200).json({ message: 'Login successful', token });
     }
     catch (error) {
         console.error('Login error:', error);
