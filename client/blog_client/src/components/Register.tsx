@@ -1,6 +1,7 @@
 import { motion} from "framer-motion";
 import { useState, type ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import registerImg from '../assets/technology-communication-icons-symbols-concept.jpg';
 
 interface registerForm {
     username: string,
@@ -64,15 +65,15 @@ const Register = () => {
   return (
     <section 
         id="register"
-        className="flex justify-center w-full p-6"
+        className="flex justify-center p-6 items-center min-h-screen"
     >
         <motion.div
             initial={{scale:0.9}}
             animate={animateDiv}
-            className="border-1 bg-gray-300 border-gray-400 p-0.5 rounded-lg "
+            className="border-1 bg-gray-300 border-gray-400 p-0.5 rounded-lg md:flex"
         >
             <motion.div
-                className="border-1 p-4 rounded-lg bg-white border-gray-400"
+                className="border-1 p-4 rounded-lg bg-white border-gray-400 md:w-1/2"
             >
                 <div className="mb-2 p-2">
                     <h1 className="text-2xl font-bold">Register</h1>
@@ -177,6 +178,38 @@ const Register = () => {
                         </motion.button>
                     </motion.div>
                 </form>
+                <p className="text-sm text-gray-500 p-2 text-center">
+                    Already have an account? 
+                    <span 
+                        className="text-blue-600 cursor-pointer hover:underline"
+                        onClick={() => navigate('/Login')}
+                    >
+                        Login
+                    </span>
+                </p>
+            </motion.div>
+            <motion.div
+                initial={{scale:0.9}}
+                animate={{scale:1}}
+                className="hidden md:block md:w-1/2"
+            >
+                <motion.div
+                    className="flex flex-col items-center h-full justify-around"
+                >
+                    <h2 
+                        className="text-3xl font-bold text-center p-4"
+                    >Welcome To Blog App
+                    </h2>
+                    <p className="text-center text-gray-600 p-2">
+                        Join us to share your thoughts and ideas with the world. 
+                        Create your account now and start blogging!
+                    </p>
+                    <img 
+                        src={registerImg} 
+                        alt="Blog App" 
+                        className="object-cover h-1/3 w-1/3"
+                    />
+                </motion.div>
             </motion.div>
         </motion.div>
     </section>
