@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import registerImg from '../assets/technology-communication-icons-symbols-concept.jpg';
+
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<{ username: string; password: string }>({
@@ -40,111 +41,197 @@ const Login = () => {
     }
   }
 
-  const animateDiv = {
-    scale:1,
-    transition:{
-        duration:0.4,
-    }
-  }
   return (
-    <div className="flex items-center p-6 min-h-screen justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+      </div>
+
       <motion.div
-        initial={{scale: 0.9}}
-        animate={animateDiv}
-        className="border-1 p-0.5 rounded-lg  border-gray-400 bg-gray-300 md:flex"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative w-full max-w-6xl"
       >
-        <motion.div
-          className="border-1 md:w-1/2 p-4 rounded-lg bg-white border-gray-400"
-        >
-          <motion.div className="mb-2 p-2">
-            <h1 className="text-2xl font-bold">Login page</h1>
-            <p className="text-sm">Discover a better way of posting blogs</p>
-          </motion.div>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
+          <div className="flex flex-col lg:flex-row">
+            {/* Left side - Form */}
             <motion.div
-                whileHover={{scale:1.03}}
-                className="relative"    
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex-1 p-8 lg:p-12"
             >
-                <input 
-                    type="text" 
-                    name="username" 
-                    id="name" 
-                    value={formData.username} 
-                    required
-                    onChange={handleChange}
-                    placeholder=""
-                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                />
-                <label
-                    htmlFor="name"
-                    className="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              <div className="max-w-md mx-auto">
+                <motion.div 
+                  className="text-center mb-8"
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                        username
-                </label>
-            </motion.div>
-            <motion.div 
-                whileHover={{scale:1.03}}
-                className="relative"
-            >
-                <input 
-                    type="password" 
-                    name="password" 
-                    id="password" 
-                    value={formData.password} 
-                    required
-                    onChange={handleChange}
-                    placeholder=""
-                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                />
-                <label
-                    htmlFor="password"
-                    className="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
+                    Welcome Back
+                  </h1>
+                  <p className="text-gray-300 text-lg">
+                    Continue your blogging journey
+                  </p>
+                </motion.div>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    whileHover={{ scale: 1.02 }}
+                    className="relative group"
+                  >
+                    <input 
+                      type="text" 
+                      name="username" 
+                      id="username" 
+                      value={formData.username} 
+                      required
+                      onChange={handleChange}
+                      placeholder=""
+                      className="peer w-full px-4 py-4 bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300"
+                    />
+                    <label
+                      htmlFor="username"
+                      className="absolute left-4 -top-2.5 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent text-sm font-medium transition-all duration-300 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:bg-gradient-to-r peer-focus:from-purple-400 peer-focus:to-pink-400 peer-focus:bg-clip-text peer-focus:text-transparent"
+                    >
+                      Username
+                    </label>
+                  </motion.div>
+
+                  <motion.div 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    whileHover={{ scale: 1.02 }}
+                    className="relative group"
+                  >
+                    <input 
+                      type="password" 
+                      name="password" 
+                      id="password" 
+                      value={formData.password} 
+                      required
+                      onChange={handleChange}
+                      placeholder=""
+                      className="peer w-full px-4 py-4 bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300"
+                    />
+                    <label
+                      htmlFor="password"
+                      className="absolute left-4 -top-2.5 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent text-sm font-medium transition-all duration-300 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:bg-gradient-to-r peer-focus:from-purple-400 peer-focus:to-pink-400 peer-focus:bg-clip-text peer-focus:text-transparent"
+                    >
+                      Password
+                    </label>
+                  </motion.div>
+
+                  <motion.button
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    whileHover={{ 
+                      scale: 1.02,
+                      boxShadow: "0 20px 25px -5px rgba(139, 92, 246, 0.3)"
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="w-full py-4 px-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform"
+                  >
+                    Sign In
+                  </motion.button>
+                </form>
+
+                <motion.div 
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="text-center mt-8"
                 >
-                    password
-                </label>
+                  <p className="text-gray-300">
+                    New to our platform?{" "}
+                    <a 
+                      href="/register" 
+                      className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold hover:from-purple-300 hover:to-pink-300 transition-all duration-300"
+                    >
+                      Create an account
+                    </a>
+                  </p>
+                </motion.div>
+              </div>
             </motion.div>
-            <motion.div 
-                className="relative"
-            >
-                <motion.button
-                    whileHover={{scale:1.03, background:"#00005f"}}
-                    className="bg-blue-950 text-white p-2 rounded-lg w-full"
-                >
-                    Submit
-                </motion.button>
-            </motion.div>
-          </form>
-          <motion.div>
-            <p className="text-gray-500 mt-2 text-center">Don't have an account?
-              <a href="/register" className="text-blue-500 ml-1 hover:underline">Register here</a>
-            </p>
-          </motion.div>
-        </motion.div>
-        <motion.div
-          initial={{scale:0.9}}
-          animate={{scale:1}}
-          className="hidden md:block md:w-1/2"
-        >
+
+            {/* Right side - Hero section */}
             <motion.div
-                className="flex flex-col items-center h-full justify-around"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex-1 relative overflow-hidden lg:block hidden"
             >
-                <h2 
-                    className="text-3xl font-bold text-center p-4"
-                >Welcome To Blog App
-                </h2>
-                <p className="text-center text-gray-600 p-2">
-                    Join us to share your thoughts and ideas with the world. 
-                    Create your account now and start blogging!
-                </p>
-                <img 
-                    src={registerImg} 
-                    alt="Blog App" 
-                    className="object-cover h-1/3 w-1/3"
-                />
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20"></div>
+              <div className="relative h-full flex flex-col items-center justify-center p-12 text-center">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="mb-8"
+                >
+                  <div className="w-32 h-32 mx-auto mb-8 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
+                    <img 
+                      src={registerImg} 
+                      alt="Blog Platform" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </motion.div>
+                
+                <motion.h2 
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-6"
+                >
+                  Share Your Story
+                </motion.h2>
+                
+                <motion.p 
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="text-gray-300 text-lg leading-relaxed max-w-md"
+                >
+                  Join thousands of creators sharing their thoughts, ideas, and experiences with the world. Your voice matters.
+                </motion.p>
+
+                <motion.div 
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  className="mt-8 flex space-x-4"
+                >
+                  <div className="flex items-center space-x-2 text-gray-300">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <span className="text-sm">Secure</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gray-300">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <span className="text-sm">Fast</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gray-300">
+                    <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                    <span className="text-sm">Modern</span>
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </motion.div>
-     
     </div>
   )
 }
