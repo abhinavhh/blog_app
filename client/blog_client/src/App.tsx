@@ -3,10 +3,12 @@ import Login from "./components/Login"
 import Register from "./components/Register"
 import Home from "./components/Home"
 import Dashboard from "./components/Dashboard"
+import Navbar from "./components/Navbar"
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+    <Navbar/>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login/>} />
