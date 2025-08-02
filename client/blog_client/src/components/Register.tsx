@@ -74,6 +74,11 @@ const Register = () => {
     <div
         className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4"
     >
+        <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+            <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        </div>
         <motion.div
             initial={{opacity: 0, y: 20}}
             animate={{opacity: 1, y: 0}}
@@ -230,25 +235,64 @@ const Register = () => {
                     </motion.div>
                     {/* right side section */}
                     <motion.div
-                        initial={{scale:0.9}}
-                        animate={{scale:1}}
-                        className="hidden md:block md:w-1/2"
+                        initial={{x: 50, opacity: 0}}
+                        animate={{x: 0, opacity: 1}}
+                        transition={{duration: 0.6, delay: 0.4}}
+                        className="flex-1 relative overflow-hidden lg:block hidden"
                     >
-                        <div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20"></div>
+                        <div
+                            className="relative h-full flex flex-col justify-center p-12 text-center"
+                        >
                             <motion.div
-                                className="flex flex-col items-center h-full justify-around"
+                                initial={{scale: 0.8, opacity: 0}}
+                                animate={{scale: 1, opacity: 1}}
+                                transition={{ duration: 0.8, delay: 0.6 }}
+                                className="mb-8"
                             >
-                                <div>
-                                    <img src="" alt="" />
+                                <div
+                                    className="w-32 h-32 mx-auto mb-8 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20"
+                                >
+                                    <img src={registerImg} 
+                                        alt="Blog Platform" 
+                                        className="w-full h-full object-cover"
+                                    />
                                 </div>
-                                <motion.h2 
-                                    className="text-3xl font-bold text-center p-4"
+                                <motion.h2
+                                    variants={animateInput}
+                                    initial="hidden"
+                                    animate="visible"
+                                    className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-6"
                                 >Welcome To Blog App
                                 </motion.h2>
-                                <p className="text-center text-gray-600 p-2">
+                                <motion.p 
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ duration: 0.6, delay: 0.8 }}
+                                    className="text-gray-300 text-lg leading-relaxed max-w-md"
+                                >
                                     Join us to share your thoughts and ideas with the world. 
                                     Create your account now and start blogging!
-                                </p>
+                                </motion.p>
+                                <motion.div 
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ duration: 0.6, delay: 0.9 }}
+                                    className="mt-8 flex space-x-4"
+                                    >
+                                    <div className="flex items-center space-x-2 text-gray-300">
+                                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                        <span className="text-sm">Secure</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2 text-gray-300">
+                                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                                        <span className="text-sm">Fast</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2 text-gray-300">
+                                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                                        <span className="text-sm">Modern</span>
+                                    </div>
+                                </motion.div>
                             </motion.div>
                         </div>
                     </motion.div>
