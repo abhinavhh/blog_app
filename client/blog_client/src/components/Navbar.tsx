@@ -42,6 +42,22 @@ const Navbar = () => {
             y: 20,
         }
     }
+
+    const animateNavlinks: Variants = {
+        hidden: {
+            opacity: 0,
+            x: 10,
+        },
+        visible:{
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.6,
+                delay: 0.2,
+                ease: ["easeInOut"],
+            }
+        }
+    }
     
   return (
     <div className="relative z-50">
@@ -65,6 +81,24 @@ const Navbar = () => {
                         width={40} 
                     />
                     <h2>ByteBlogs</h2>
+                </motion.div>
+
+                {/* Desktop View */}
+                <motion.div
+                    className="hidden md:flex space-x-6 mr-8"
+                >
+                    {["home", "blog", "profile", "logout"].map((item) => (
+                        <motion.button
+                            key={item}
+                            variants={animateNavlinks}
+                            initial="hidden"
+                            animate="visible"
+                            whileHover={{scale: 1.09, color: "gray"}}
+                            className="text-white uppercase text-sm tracking-wider cursor-pointer"
+                        >
+                            {item}
+                        </motion.button>
+                    ))}
                 </motion.div>
 
                 {/* Mobile View  Button*/}
@@ -91,7 +125,7 @@ const Navbar = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="md:hidden absolute  right-0 rounded-lg shadow-md p-4 top-8 left-3/4"
+                className="md:hidden absolute  right-0 rounded-l-lg shadow-md p-4 top-4 left-3/4 bg-white/10 backdrop-blur-lg"
 
             >
                 {["home", "blog", "profile", "logout"].map((item) => (
