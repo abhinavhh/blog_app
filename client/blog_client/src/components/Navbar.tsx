@@ -64,7 +64,7 @@ const Navbar = () => {
             className="p-4 fixed w-full z-50"
         >
             <motion.div
-                className="flex justify-between items-center"
+                className="max-w-7xl mx-auto flex justify-between items-center"
             >
                 {/* logo field */}
                 <motion.div
@@ -79,7 +79,7 @@ const Navbar = () => {
                         alt="Logo"
                         width={40} 
                     />
-                    <h2>ByteBlogs</h2>
+                    <h2 className="font-bold text-xl">ByteBlogs</h2>
                 </motion.div>
 
                 {/* Desktop View */}
