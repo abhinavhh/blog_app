@@ -1,9 +1,8 @@
-import { AnimatePresence, motion, rgba, scale } from "framer-motion";
+import { AnimatePresence, motion} from "framer-motion";
 import type { Variants } from "framer-motion";
 import logoImg from '/Logo.png';
 import React from "react";
 import { Menu, X } from "lucide-react";
-import { div } from "framer-motion/client";
 const Navbar = () => {
 
     const[isMenuOpen, setIsMenuOpen] = React.useState(false);
