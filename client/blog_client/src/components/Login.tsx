@@ -19,6 +19,9 @@ const Login = () => {
       }
     ))
   }
+  const handleClick = () => {
+    navigate('/register');
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,9 +54,6 @@ const Login = () => {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
         className="relative w-full max-w-6xl"
       >
         <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
@@ -156,7 +156,8 @@ const Login = () => {
                   <p className="text-gray-300">
                     New to our platform?{" "}
                     <a 
-                      href="/register" 
+                      href="/register"
+                      onClick={handleClick} 
                       className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold hover:from-purple-300 hover:to-pink-300 transition-all duration-300"
                     >
                       Create an account

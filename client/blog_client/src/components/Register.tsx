@@ -80,12 +80,10 @@ const Register = () => {
             <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
         </div>
         <motion.div
-            initial={{opacity: 0, y: 20}}
-            animate={{opacity: 1, y: 0}}
-            transition={{duration: 0.6}}
+            
             className="relative w-full max-w-6xl"
         >
-            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl overflow-hidden mt-12">
                 <div className="flex flex-col lg:flex-row">
                     {/* left side section */}
                     <motion.div
@@ -269,7 +267,7 @@ const Register = () => {
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ duration: 0.6, delay: 0.8 }}
-                                    className="text-gray-300 text-lg leading-relaxed max-w-md"
+                                    className="text-gray-300 text-lg leading-relaxed text-center"
                                 >
                                     Join us to share your thoughts and ideas with the world. 
                                     Create your account now and start blogging!
@@ -278,7 +276,7 @@ const Register = () => {
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ duration: 0.6, delay: 0.9 }}
-                                    className="mt-8 flex space-x-4"
+                                    className="mt-8 flex space-x-4 items-center justify-center"
                                     >
                                     <div className="flex items-center space-x-2 text-gray-300">
                                         <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
