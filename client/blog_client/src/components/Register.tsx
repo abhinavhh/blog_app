@@ -223,10 +223,9 @@ const Register = () => {
                             >
                                 <p className=" text-gray-300 p-2">
                                     Already have an account?{" "} 
-                                    <a 
-                                        href="/login"
+                                    <p 
                                         className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-pink-300"
-                                    >Sign In</a>
+                                    >Sign In</p>
                                 </p>
                             </motion.div>
                         </div>
