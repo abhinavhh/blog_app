@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import registerImg from '../assets/technology-communication-icons-symbols-concept.jpg';
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,9 +19,6 @@ const Login = () => {
         [name]: value,
       }
     ))
-  }
-  const handleClick = () => {
-    navigate('./register');
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -155,13 +153,12 @@ const Login = () => {
                 >
                   <p className="text-gray-300">
                     New to our platform?{" "}
-                    <a 
-                      href="/register"
-                      onClick={handleClick} 
+                    <Link
+                      to="/register"
                       className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold hover:from-purple-300 hover:to-pink-300 transition-all duration-300"
                     >
                       Create an account
-                    </a>
+                    </Link>
                   </p>
                 </motion.div>
               </div>
