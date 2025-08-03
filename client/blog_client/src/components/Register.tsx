@@ -27,6 +27,10 @@ const Register = () => {
         }))
     }
 
+    const handleClick = () => {
+        navigate("./login");
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if(formData.password !== confirPass){
@@ -224,6 +228,7 @@ const Register = () => {
                                 <p className=" text-gray-300 p-2">
                                     Already have an account?{" "} 
                                     <p 
+                                        onClick={handleClick}
                                         className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-pink-300"
                                     >Sign In</p>
                                 </p>

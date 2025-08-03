@@ -20,7 +20,7 @@ const Login = () => {
     ))
   }
   const handleClick = () => {
-    navigate('/register');
+    navigate('./register');
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
