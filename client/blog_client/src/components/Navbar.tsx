@@ -2,11 +2,13 @@ import { AnimatePresence, motion} from "framer-motion";
 import type { Variants } from "framer-motion";
 import logoImg from '/Logo.png';
 import React from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { useTheme } from "./Theme/ThemeContext";
 const Navbar = () => {
 
     const[isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+    const {theme, toggleTheme} = useTheme();
 
     const animateOpacity: Variants = {
         hidden:{
@@ -99,6 +101,10 @@ const Navbar = () => {
                         </motion.button>
                     ))}
                 </motion.div>
+
+                <motion.button onClick={toggleTheme}>
+                    {theme === 'light' ? <Moon /> : <Sun />}
+                </motion.button>
 
                 {/* Mobile View  Button*/}
                 <div
