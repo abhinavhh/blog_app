@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import Text from "../components/styles/Text"; // Adjust path as needed
 
 interface AnimatedInputProps {
   type: string;
@@ -11,12 +12,12 @@ interface AnimatedInputProps {
 }
 
 const AnimatedInput: React.FC<AnimatedInputProps> = ({
-  type, 
-  name, 
-  value, 
-  onChange, 
+  type,
+  name,
+  value,
+  onChange,
   label,
-  delay = 0
+  delay = 0,
 }) => {
   return (
     <motion.div
@@ -34,14 +35,23 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
         required
         onChange={onChange}
         placeholder=""
-        className="peer w-full px-4 py-4 bg-white/5 backdrop-blur-sm border border-white/20 rounded-2xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300"
+        className="peer w-full px-4 py-4 bg-[var(--color-input-bg)] backdrop-blur-sm border border-white/20 rounded-2xl text-[var(--color-input-text)] placeholder-transparent focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300"
       />
-      <label
+      <Text
+        as="label"
         htmlFor={name}
-        className="absolute left-4 -top-2.5 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent text-sm font-medium transition-all duration-300 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:bg-gradient-to-r peer-focus:from-purple-400 peer-focus:to-pink-400 peer-focus:bg-clip-text peer-focus:text-transparent"
+        size="sm"
+        font="medium"
+        variant="white"
+        className="absolute left-4 -top-2.5 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300
+          peer-placeholde]
+          peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+          peer-focus:-top-2.5 peer-focus:text-sm
+          peer-focus:bg-gradient-to-r peer-focus:from-purple-400 peer-focus:to-pink-400
+          peer-focus:text-transparent"
       >
         {label}
-      </label>
+      </Text>
     </motion.div>
   );
 };

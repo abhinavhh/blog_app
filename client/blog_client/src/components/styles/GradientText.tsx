@@ -10,7 +10,7 @@ export const GradientText: React.FC<GradientTextProps> = ({
   className = ""
 }) => {
   return (
-    <h1 className={`${size} font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2 ${className}`}>
+    <h1 className={`${size} gradient-text ${className}`}>
       {text}
     </h1>
   );

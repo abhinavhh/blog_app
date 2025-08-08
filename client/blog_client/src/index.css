@@ -40,3 +40,29 @@
   --gradient-text: linear-gradient(to right, var(--color-gradient-text-start), var(--color-gradient-text-end));
   --gradient-hero: linear-gradient(to bottom right, var(--color-hero-bg-start), var(--color-hero-bg-end));
 }
+
+/* for  the link texts colors */
+.gradient-text {
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-backgroud-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: var(--font-bold);
+}
+
+
+.animate-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-color: var(--color-border-subtle);
+  color: white;
+}
+
+.input-label-gradient {
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
