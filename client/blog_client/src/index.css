@@ -9,6 +9,12 @@
 /* ========= Design Tokens ========= */
 @theme {
   /* Colors */
+   --color-primary-text: #FFFFFF;      /* gray-300 */
+    --color-secondary-text: #d1d5db;      /* white */
+
+    --color-tertiary-text: #000000;
+    /* black */
+
   --color-primary-start: #c084fc;      /* purple-400 */
   --color-primary-end: #f472b6;        /* pink-400 */
   --color-primary-hover-start: #d8b4fe; /* purple-300 */
@@ -17,7 +23,7 @@
   --color-hero-bg-end: rgba(219, 39, 119, 0.2);   /* pink-600/20 */
   --color-gradient-text-start: #ffffff;
   --color-gradient-text-end: #d1d5db;   /* gray-300 */
-  --color-secondary-text: #d1d5db;      /* gray-300 */
+
 
   --color-badge-green: #4ade80;   /* green-400 */
   --color-badge-blue: #60a5fa;    /* blue-400 */
