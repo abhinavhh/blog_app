@@ -1,5 +1,8 @@
 import express from "express";
 import User from "../../models/user.js";
+import nodemailer from "nodemailer";
+import dotenv from 'dotenv'
+dotenv.config();
 import { clearExpiredOtps, saveOtp } from "./otpStoreAndVerify.js";
 const forgetPasswordRouter = express.Router();
 
@@ -49,8 +52,8 @@ forgetPasswordRouter.post('/auth/forget-password', async(req, res) => {
         
     }
     catch (error) {
-        console.error('Forget password error:', error);
         res.status(500).json({ message: 'Internal server error' });
+        console.error('Forget password error:', error.message);
     }
 })
 export default forgetPasswordRouter;

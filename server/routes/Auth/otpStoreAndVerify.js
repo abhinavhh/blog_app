@@ -7,7 +7,7 @@ export function saveOtp(email, otp) {
     const existing = otpStore.get(email);
     if (existing) {
         // Check if resend limit reached
-        if (existing.resendCount >= MAX_RESENDS && now - existing.firstRequest < RESEND_WINDOW_MS) {
+        if (existing.resendCount >= maxResendCount && now - existing.firstRequest < RESEND_WINDOW_MS) {
             return false; // Resend limit reached
         }
     }

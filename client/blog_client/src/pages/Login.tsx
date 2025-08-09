@@ -8,7 +8,7 @@ import { AuthWrapper } from "../components/Auth/AuthWrapper";
 import { GradientText } from "../components/styles/GradientText";
 import { LinkText } from "../components/styles/LinkText";
 import Text from "../components/styles/Text";
-import { toast } from "react-toastify";
+import { Bounce, Slide, toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,17 +22,28 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("api/login", {
+      const response = await fetch("api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
       });
+      const data = await response.json();
       if (response.ok) {
-        alert("Login Successful");
-        const data = await response.json();
+        toast.success(data.message,{
+          autoClose: 1000,
+        });
         localStorage.setItem("token", data.token);
         navigate("/home");
+        return;
       }
+      toast.error(data.message, {
+        position: "top-left",
+        transition: Bounce,
+        autoClose: 2000,
+      })
     } catch (err) {
       alert(`Error in Login : ${err}`);
     }
@@ -41,20 +52,27 @@ const Login = () => {
   const handleOTPRequest = async(e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('api/auth/request-otp', {
+      const response = await fetch('api/auth/forget-password', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData.email)
+        body: JSON.stringify({email: formData.email})
       });
       const data = await response.json();
       if(response.ok) {
-        toast.success(data.message);
+        toast.success(data.message,{
+          autoClose: 1000,
+        });
         toggleVerify(false);
+        localStorage.setItem('usermail', formData.email);
         navigate('/reset-password');
+        return;
       }
-      toast.error(data.message);
+      toast.error(data.message,{
+        position: "top-center",
+        autoClose:2000,
+      });
     }
     catch (err: any) {
       toast.error(err.message);

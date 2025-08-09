@@ -8,6 +8,7 @@ import { AuthWrapper } from "../components/Auth/AuthWrapper";
 import { GradientText } from "../components/styles/GradientText";
 import { LinkText } from "../components/styles/LinkText";
 import Text from "../components/styles/Text";
+import { Bounce, Slide, toast } from "react-toastify";
 
 interface registerForm {
     username: string,
@@ -44,26 +45,39 @@ const Register = () => {
             return
         }
         try {
-            const response = await fetch('api/register', {
+            const response = await fetch('/api/auth/register', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    username: formData.username,
+                    password: formData.password,
+                    email: formData.email,
+                })
             });
             const data = await response.json();
-            if (data) {
-                alert('User Registration Successfull');
+            if (response.ok) {
+                toast.success(data.message, {
+                    position: "top-center"
+                });
                 setFormData({
                     username: '',
                     password: '',
                     email: '',
                 })
-                navigate('/login'); // Fixed navigation path
+                navigate('/login');
+                return;
             }
+            toast.error(data.message,{
+                position: "top-center",
+                transition: Slide,
+                autoClose:3000,
+                
+            });
         }
-        catch (err) {
-            alert(`Error in registration : ${err}`);
+        catch (err: any) {
+            toast.error(err.message);
         }
     }
 
