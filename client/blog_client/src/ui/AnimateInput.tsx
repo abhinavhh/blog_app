@@ -35,7 +35,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
         required
         onChange={onChange}
         placeholder=""
-        className="peer w-full px-4 py-4 bg-[var(--color-input-bg)] backdrop-blur-sm border border-white/20 rounded-2xl text-[var(--color-input-text)] placeholder-transparent focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300"
+        className="peer w-full px-4 py-4  backdrop-blur-sm border border-white/20 rounded-2xl text-secondary-text placeholder-transparent focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all duration-300"
       />
       <Text
         as="label"

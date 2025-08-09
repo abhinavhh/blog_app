@@ -7,6 +7,7 @@ import { GradientButton } from "../ui/GradientButton";
 import { AuthWrapper } from "../components/Auth/AuthWrapper";
 import { GradientText } from "../components/styles/GradientText";
 import { LinkText } from "../components/styles/LinkText";
+import Text from "../components/styles/Text";
 
 interface registerForm {
     username: string,
@@ -84,9 +85,9 @@ const Register = () => {
                             transition={{ duration: 0.6, delay: 0.3 }}
                         >
                             <GradientText text="Register" />
-                            <p className="text-gray-300 text-lg">
-                                Discover a better way for posting blogs
-                            </p>
+                            <Text as="p" size="lg" font="semibold" variant="gray">
+                                Discover A Better Way For Posting Blogs
+                            </Text>
                         </motion.div>
 
                         <form onSubmit={handleSubmit} className="space-y-6">
@@ -139,10 +140,9 @@ const Register = () => {
                             transition={{ duration: 0.6, delay: 0.7 }}
                             className="text-center mt-8"
                         >
-                            <p className="text-gray-300">
-                                Already have an account?{" "}
-                                <LinkText to="/login" text="Sign In" />
-                            </p>
+                            <Text as="p" size="base" variant="gray">Already Have an Account?{" "}
+                                <LinkText to="/login" text="Sign In"/>
+                            </Text>
                         </motion.div>
                     </div>
                 </motion.div>
