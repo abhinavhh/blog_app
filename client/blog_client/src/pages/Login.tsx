@@ -154,8 +154,6 @@ const Login = () => {
           </motion.div>
         }
         
-        
-
         {/* Right - Image */}
         <motion.div
           initial={{ x: 50, opacity: 0 }}

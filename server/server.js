@@ -11,6 +11,7 @@ import connectDB from './config/database.js';
 import authRouter from './config/authorize.js';
 import loginRouter from './routes/login.js';
 import registerRouter from './routes/register.js';
+import forgetPasswordRouter from './routes/Auth/forgetPassword.js';
 //create a express app
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ connectDB();
 
 app.use('/api', loginRouter);
 app.use('/api', registerRouter);
+app.use('/api', forgetPasswordRouter);
 
 app.use('/api', authRouter);
 // define a port for running server
