@@ -38,7 +38,7 @@ const Text = ({
   }
 
   const variants = {
-    gray: "text-gray-600",
+    gray: "text-gray-300",
     white: "text-white",
     dark: "text-gray-900",
     red: "text-red-900",
