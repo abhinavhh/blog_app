@@ -5,7 +5,7 @@ const router = express.Router();
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 
-router.post('/login', async (req, res) => {
+router.post('/auth/login', async (req, res) => {
     const { username, password } = req.body;
     
     try {
@@ -17,10 +17,8 @@ router.post('/login', async (req, res) => {
         const isMatch = await user.comparePassword(password);
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid credentials' });
-            console.error('Invalid credentials for user:', username);
         }
-        console.log('User logged in successfully:', username);
-        const token = jwt.sign({username: user.username, role: user.role},process.env.JWT_SECRET, {expiresIn: '1h'});
+        const token = jwt.sign({userId: user._id, username: user.username, role: user.role},process.env.JWT_SECRET, {expiresIn: '1h'});
         res.status(200).json({ message: 'Login successful', token });
     }
     catch (error) {

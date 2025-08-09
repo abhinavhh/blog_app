@@ -140,7 +140,7 @@ const Register = () => {
                             transition={{ duration: 0.6, delay: 0.7 }}
                             className="text-center mt-8"
                         >
-                            <Text as="p" size="base" variant="gray">Already Have an Account?{" "}
+                            <Text as="p" size="base" font="medium" variant="gray">Already Have an Account?{" "}
                                 <LinkText to="/login" text="Sign In"/>
                             </Text>
                         </motion.div>

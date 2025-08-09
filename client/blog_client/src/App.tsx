@@ -3,7 +3,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Home from "./components/Home"
 import Dashboard from "./components/Dashboard"
-import Navbar from "./components/Navbar"
+import Navbar from "./components/layout/Navbar"
 
 const App: React.FC = () => {
   return (

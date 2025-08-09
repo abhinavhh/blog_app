@@ -3,7 +3,7 @@ import type { Variants } from "framer-motion";
 import logoImg from '/Logo.png';
 import React from "react";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useTheme } from "./Theme/ThemeContext";
+import { useTheme } from "../Theme/ThemeContext";
 const Navbar = () => {
 
     const[isMenuOpen, setIsMenuOpen] = React.useState(false);

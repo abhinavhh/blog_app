@@ -12,6 +12,19 @@ registerRouter.post('/register', async (req, res) => {
             return res.status(400).json({ message: 'Username already exists' });
         }
 
+        const existingMail = await User.findOne({ email});
+        if (existingMail) {
+            return res.status(400).json({ message: 'Email already exists'});
+        }
+
+        // check password security and length
+        if( password.length < 6) {
+            return res.status(400).json({ message: 'Password must be at least 6 character long'});
+        }
+        else if (!/{A-Z}/.test(password) || !/{a-z}/.test(password) || !/{0-9}/.test(password) || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            return res.status(400).json({ message: 'Password must contain at least one uppercase letter, one Lowercase letter, one special symbol and one number'});
+        }
+
         const newUser = new User({
             username,
             password,
