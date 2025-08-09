@@ -1,8 +1,9 @@
-import User from './models/User.js';
 
-const registerRouter = require('express').Router();
+import express from 'express';
+const registerRouter = express.Router();
+import User from '../models/user.js';
 
-registerRouter.post('/register', async (req, res) => {
+registerRouter.post('/auth/register', async (req, res) => {
 
     const { username, password, email } = req.body;
 
@@ -37,4 +38,5 @@ registerRouter.post('/register', async (req, res) => {
         console.error('Registration error:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
-})
+});
+export default registerRouter;

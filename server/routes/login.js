@@ -1,11 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
-const router = express.Router();
+const loginRouter = express.Router();
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 
-router.post('/auth/login', async (req, res) => {
+loginRouter.post('/auth/login', async (req, res) => {
     const { username, password } = req.body;
     
     try {
@@ -26,4 +26,4 @@ router.post('/auth/login', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 })
-export default router;
+export default loginRouter;
