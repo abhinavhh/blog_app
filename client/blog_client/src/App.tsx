@@ -5,6 +5,7 @@ import Home from "./components/Home"
 import Dashboard from "./components/Dashboard"
 import Navbar from "./components/layout/Navbar"
 import { ToastContainer } from "react-toastify"
+import ResetPassword from "./components/Auth/ResetPassword"
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register/>} />
         <Route path="/home" element={<Home />}/>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/reset-password" element={<ResetPassword />}/>
       </Routes>
       <ToastContainer/>
     </>
