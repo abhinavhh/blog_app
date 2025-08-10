@@ -8,7 +8,7 @@ import { AuthWrapper } from "../components/Auth/AuthWrapper";
 import { GradientText } from "../components/styles/GradientText";
 import { LinkText } from "../components/styles/LinkText";
 import Text from "../components/styles/Text";
-import { Bounce, toast } from "react-toastify";
+import { Bounce, Slide, toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,6 +33,8 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         toast.success(data.message,{
+          position:"top-center",
+          transition: Slide,
           autoClose: 1000,
         });
         localStorage.setItem("token", data.token);
@@ -46,6 +48,7 @@ const Login = () => {
       })
     } catch (err:any) {
       toast.error(err.message, {
+        position: "top-left",
         transition: Bounce,
         autoClose: 2000,
       })
