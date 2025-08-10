@@ -11,7 +11,7 @@ import blogImg from '../../assets/technology-communication-icons-symbols-concept
 interface formProps{
     password: string,
     confirmPassword: string,
-    otp:string,
+    otp:number,
     email:string,
 }
 const ResetPassword = () => {
@@ -23,7 +23,7 @@ const ResetPassword = () => {
     const [formData, setFormData ] = useState<formProps>({
         password: "",
         confirmPassword: "",
-        otp: "",
+        otp: 0,
         email: "",
     })
 
@@ -119,6 +119,7 @@ const ResetPassword = () => {
                     autoClose: 1000,
                 });
                 navigate('/login');
+                return;
             }
 
             toast.error(data.message, {
@@ -139,28 +140,28 @@ const ResetPassword = () => {
     const handleResend = async(e: React.FormEvent) => {
         e.preventDefault();
         try {
-        const response = await fetch('api/auth/forget-password', {
-            method: "POST",
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({email: formData.email})
-        });
-        const data = await response.json();
-        if(response.ok) {
-            toast.success(data.message,{
-            autoClose: 1000,
+            const response = await fetch('api/auth/forget-password', {
+                method: "POST",
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email: formData.email})
             });
-            toggleResend(false);
-            return;
-        }
-        toast.error(data.message,{
-            position: "top-center",
-            autoClose:2000,
-        });
+            const data = await response.json();
+            if(response.ok) {
+                toast.success(data.message,{
+                autoClose: 1000,
+                });
+                toggleResend(false);
+                return;
+            }
+            toast.error(data.message,{
+                position: "top-center",
+                autoClose:2000,
+            });
         }
         catch (err: any) {
-        toast.error(err.message);
+            toast.error(err.message);
         }
     }
   return (
@@ -238,7 +239,7 @@ const ResetPassword = () => {
                         />
                         <AnimatedInput 
                             type="password"
-                            name="ConfirmPassword"
+                            name="confirmPassword"
                             value={formData.confirmPassword}
                             label="Confirm Password" 
                             onChange={handleChange}

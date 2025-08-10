@@ -5,7 +5,7 @@ import Text from "../components/styles/Text"; // Adjust path as needed
 interface AnimatedInputProps {
   type: string;
   name: string;
-  value: string;
+  value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   label: string;
   delay?: number;

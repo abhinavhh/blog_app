@@ -14,7 +14,7 @@ verifyOtpRouter.post('/auth/verify-otp', async (req, res) => {
         if(!user) {
             return res.status(404).json({ message: 'Error in verifying user try again'});
         }
-        if(otp!= user.otp) {
+        if(otp != user.otp) {
             return res.status(400).json({
                 message: 'Invalid OTP, please try again'
             })
