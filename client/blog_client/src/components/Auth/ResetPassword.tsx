@@ -43,7 +43,7 @@ const ResetPassword = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({password: formData.password})
+                body: JSON.stringify({otp: formData.otp})
             })
             const data = await response.json();
             if(response.ok) {
