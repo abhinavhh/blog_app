@@ -41,7 +41,11 @@ const Register = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (formData.password !== confirPass) {
-            alert('Password not Match');
+            toast.warning('Password do not match', {
+                position: "top-left",
+                transition: Slide,
+                autoClose: 1000,
+            })
             return
         }
         try {
@@ -59,7 +63,9 @@ const Register = () => {
             const data = await response.json();
             if (response.ok) {
                 toast.success(data.message, {
-                    position: "top-center"
+                    position: "top-center",
+                    transition: Slide,
+                    autoClose: 1000,
                 });
                 setFormData({
                     username: '',
@@ -70,14 +76,18 @@ const Register = () => {
                 return;
             }
             toast.error(data.message,{
-                position: "top-center",
-                transition: Slide,
-                autoClose:3000,
+                position: "top-left",
+                transition: Bounce,
+                autoClose:2000,
                 
             });
         }
         catch (err: any) {
-            toast.error(err.message);
+            toast.error(err.message, {
+                position: "top-left",
+                transition: Bounce,
+                autoClose: 2000,
+            });
         }
     }
 

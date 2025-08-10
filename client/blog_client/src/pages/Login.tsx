@@ -8,7 +8,7 @@ import { AuthWrapper } from "../components/Auth/AuthWrapper";
 import { GradientText } from "../components/styles/GradientText";
 import { LinkText } from "../components/styles/LinkText";
 import Text from "../components/styles/Text";
-import { Bounce, Slide, toast } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,8 +44,11 @@ const Login = () => {
         transition: Bounce,
         autoClose: 2000,
       })
-    } catch (err) {
-      alert(`Error in Login : ${err}`);
+    } catch (err:any) {
+      toast.error(err.message, {
+        transition: Bounce,
+        autoClose: 2000,
+      })
     }
   };
 
