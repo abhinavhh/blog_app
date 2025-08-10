@@ -151,9 +151,7 @@ const ResetPassword = () => {
             toast.success(data.message,{
             autoClose: 1000,
             });
-            toggleVerify(false);
-            localStorage.setItem('usermail', formData.email);
-            navigate('/reset-password');
+            toggleResend(false);
             return;
         }
         toast.error(data.message,{
@@ -200,6 +198,7 @@ const ResetPassword = () => {
                         />
 
                         {resend && <motion.button
+                            onClick={handleResend}
                             className="p-4 text-primary-text border-0 font-medium border-gray-100 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 w-full"
                         >
                             Resend OTP

@@ -3,7 +3,6 @@ import User from "../../models/user.js";
 import nodemailer from "nodemailer";
 import dotenv from 'dotenv'
 dotenv.config();
-import { clearExpiredOtps, saveOtp } from "./otpStoreAndVerify.js";
 const forgetPasswordRouter = express.Router();
 
 forgetPasswordRouter.post('/auth/forget-password', async(req, res) => {
@@ -30,14 +29,12 @@ forgetPasswordRouter.post('/auth/forget-password', async(req, res) => {
             }
         });
 
-        // save otp in a temporary storage but not in the database
-        const err = saveOtp(email, otp);
-        clearExpiredOtps();
+        // save otp  in the database
+        const date = new Date();
 
-
-        if (err) {
-            return res.status(500).json({ message: 'Resend limit exceeded, please try again Later'});
-        }
+        user.otp = otp.toString();
+        user.otpExpires = new Date(date.getTime() + 5 * 60000); // OTP valid for 5 minutes
+        await user.save();
 
          const mailOptions = {
             from: process.env.EMAIL_USER,

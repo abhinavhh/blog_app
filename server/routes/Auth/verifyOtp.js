@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyOTP } from './otpStoreAndVerify.js';
+import User from '../../models/user.js';
 const verifyOtpRouter = express.Router();
 
 verifyOtpRouter.post('/auth/verify-otp', async (req, res) => {
@@ -8,15 +8,33 @@ verifyOtpRouter.post('/auth/verify-otp', async (req, res) => {
 
     try {
         if (!otp || ! email) {
-            return res.status(400).json({message: 'OTP and email are required'});
+            return res.status(400).json({message: 'No data provided'});
+        }
+        const user = await User.findOne({ email });
+        if(!user) {
+            return res.status(404).json({ message: 'Error in verifying user try again'});
+        }
+        if(otp!= user.otp) {
+            return res.status(400).json({
+                message: 'Invalid OTP, please try again'
+            })
         }
 
-        const result = verifyOTP(email, otp);
-        if(!result) {
-            return res.status(400).json({message: 'Inavlid or expired OTP'});
+        else if( otp == user.otp) {
+            if( new Date() > user.otpExpires) {
+                return res.status(400).json({
+                    message: 'OTP has expired, please request a new one'
+                })
+            }
+            else {
+                user.otp = "";
+                user.otpExpires = null;
+                await user.save();
+                return res.status(200).json({
+                    message: 'OTP verified successfully'
+                });
+            }
         }
-
-        return res.status(200).json({message: 'OTP verified successfully'});
         
     }
     catch (err) {

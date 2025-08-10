@@ -183,9 +183,9 @@ const Login = () => {
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex-1 hidden lg:flex items-center justify-center p-8"
+          className="flex-1 hidden lg:flex items-center justify-center p-8 bg-gradient-to-br from-purple-600/10 to-pink-600/10"
         >
-          <div className="text-center max-w-md">
+          <div className="text-center max-w-md -">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
