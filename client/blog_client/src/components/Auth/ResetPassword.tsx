@@ -35,15 +35,30 @@ const ResetPassword = () => {
         }))
     }
 
+    const userMail = localStorage.getItem('usermail');
+
     const handleOtpSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
+        if(userMail == "") {
+            toast.error('Try again', {
+                position: "top-center",
+                transition: Bounce,
+                autoClose: 1000,
+            });
+            navigate('/login');
+            return;
+        }
+        setFormData(prev => ({
+            ...prev,
+            email: userMail ?? ""
+        }));
         try {
             const response = await fetch('/api/auth/verify-otp', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({otp: formData.otp})
+                body: JSON.stringify({otp: formData.otp, email: formData.email})
             })
             const data = await response.json();
             if(response.ok) {
@@ -83,13 +98,18 @@ const ResetPassword = () => {
             return;
         }
 
+        setFormData(prev => ({
+            ...prev,
+            email: userMail ?? ""
+        }));
+
         try {
             const response = await fetch('/api/auth/reset-password', {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({password: formData.password})
+                body: JSON.stringify({password: formData.password, email: formData.email})
             })
             const data = await response.json();
             if(response.ok) {

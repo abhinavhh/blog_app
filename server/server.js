@@ -12,6 +12,9 @@ import authRouter from './config/authorize.js';
 import loginRouter from './routes/login.js';
 import registerRouter from './routes/register.js';
 import forgetPasswordRouter from './routes/Auth/forgetPassword.js';
+import verifyOtpRouter from './routes/Auth/verifyOtp.js';
+import resetPasswordRouter from './routes/Auth/resetPassword.js';
+
 //create a express app
 const app = express();
 app.use(cors());
@@ -22,8 +25,10 @@ connectDB();
 app.use('/api', loginRouter);
 app.use('/api', registerRouter);
 app.use('/api', forgetPasswordRouter);
-
+app.use('/api', verifyOtpRouter);
 app.use('/api', authRouter);
+app.use('/api', resetPasswordRouter);
+
 // define a port for running server
 const PORT = process.env.PORT || 5000;
 

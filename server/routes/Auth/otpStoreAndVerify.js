@@ -25,6 +25,7 @@ export function verifyOTP(email, otp) {
         return false;
     }
     if (record.otp !== otp) return false;
+    
     otpStore.delete(email); // OTP used
     return true;
 }
