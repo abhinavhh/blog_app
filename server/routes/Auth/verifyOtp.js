@@ -2,7 +2,7 @@ import express from 'express';
 import { verifyOTP } from './otpStoreAndVerify.js';
 const verifyOtpRouter = express.Router();
 
-verifyOtpRouter.post('/auth/verify', async (req, res) => {
+verifyOtpRouter.post('/auth/verify-otp', async (req, res) => {
 
     const { otp, email } = req.body;
 

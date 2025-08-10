@@ -19,7 +19,7 @@ const ResetPassword = () => {
     const navigate = useNavigate();
 
     const [verify, toggleVerify] = useState<boolean>(true);
-
+    const [resend, toggleResend] = useState<boolean>(false);
     const [formData, setFormData ] = useState<formProps>({
         password: "",
         confirmPassword: "",
@@ -70,7 +70,7 @@ const ResetPassword = () => {
                 toggleVerify(false);
                 return;
             }
-
+            toggleResend(true);
             toast.error(data.message, {
                 position: "top-center",
                 transition: Bounce,
@@ -135,6 +135,36 @@ const ResetPassword = () => {
             });
         }
     }
+
+    const handleResend = async(e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+        const response = await fetch('api/auth/forget-password', {
+            method: "POST",
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: formData.email})
+        });
+        const data = await response.json();
+        if(response.ok) {
+            toast.success(data.message,{
+            autoClose: 1000,
+            });
+            toggleVerify(false);
+            localStorage.setItem('usermail', formData.email);
+            navigate('/reset-password');
+            return;
+        }
+        toast.error(data.message,{
+            position: "top-center",
+            autoClose:2000,
+        });
+        }
+        catch (err: any) {
+        toast.error(err.message);
+        }
+    }
   return (
     <AuthWrapper>
         <div
@@ -169,7 +199,13 @@ const ResetPassword = () => {
                             label="Enter OTP"
                         />
 
+                        {resend && <motion.button
+                            className="p-4 text-primary-text border-0 font-medium border-gray-100 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 w-full"
+                        >
+                            Resend OTP
+                        </motion.button>}
                         <GradientButton type="submit" label="Verify OTP"/>
+                        
                     </form>
                 </div>
             </motion.div> 
