@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import registerImg from "../assets/technology-communication-icons-symbols-concept.jpg";
-import AnimatedInput from "../ui/AnimateInput";
-import { GradientButton } from "../ui/GradientButton";
-import { AuthWrapper } from "../components/Auth/AuthWrapper";
-import { GradientText } from "../components/styles/GradientText";
-import { LinkText } from "../components/styles/LinkText";
-import Text from "../components/styles/Text";
+import registerImg from "../../assets/technology-communication-icons-symbols-concept.jpg";
+import AnimatedInput from "../../ui/AnimateInput";
+import { GradientButton } from "../../ui/GradientButton";
+import { AuthWrapper } from "../Auth/AuthWrapper";
+import { GradientText } from "../styles/GradientText";
+import { LinkText } from "../styles/LinkText";
+import Text from "../styles/Text";
 import { Bounce, Slide, toast } from "react-toastify";
 
 const Login = () => {
